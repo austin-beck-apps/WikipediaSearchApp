@@ -19,7 +19,13 @@ class MockWikipediaService: WikipediaServiceProtocol {
             return Fail(error: URLError(.badServerResponse))
                 .eraseToAnyPublisher()
         }
-        return Just(mockArticles)
+        
+        // Simulate the API response filtering that happens in WikipediaSearchResponse
+        let filteredArticles = mockArticles.filter { page in
+            page.missing != true && page.invalid != true && page.pageid != nil
+        }
+        
+        return Just(filteredArticles)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
@@ -29,7 +35,13 @@ class MockWikipediaService: WikipediaServiceProtocol {
             return Fail(error: URLError(.badServerResponse))
                 .eraseToAnyPublisher()
         }
-        return Just(mockArticles)
+        
+        // Simulate the API response filtering that happens in WikipediaSearchResponse
+        let filteredArticles = mockArticles.filter { page in
+            page.missing != true && page.invalid != true && page.pageid != nil
+        }
+        
+        return Just(filteredArticles)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }

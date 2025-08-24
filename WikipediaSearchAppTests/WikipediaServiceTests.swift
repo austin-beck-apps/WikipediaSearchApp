@@ -21,7 +21,7 @@ class WikipediaServiceTests: XCTestCase {
     func testSearchArticles() {
         let expectation = XCTestExpectation(description: "Search articles")
         
-        service.searchArticles(query: "Swift programming")
+        service.searchArticles(query: "Test Query")
             .sink(
                 receiveCompletion: { completion in
                     if case .failure(let error) = completion {
